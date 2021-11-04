@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $html-size;
+  font-family: 'Mulish', sans-serif;
+  overflow-x: $html-overflow-x;
+  overflow-y: $html-overflow-y;
+  text-rendering: $html-rendering;
+  text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Link
+a {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+
+  strong {
+    color: currentColor;
+  }
+}

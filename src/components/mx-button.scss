@@ -1,0 +1,182 @@
+// ============================================================
+// Components » Button
+// ============================================================
+
+$variant-colors: (
+  primary: (
+    default-background: $brand-color-secondary-pure,
+    hover-background: $brand-color-secondary-medium,
+    focus-background: $brand-color-secondary-medium,
+    disabled-background: $neutral-color-high-medium,
+    default-text-color: $neutral-color-high-pure,
+    disabled-text-color: $neutral-color-low-light
+  ),
+  secondary: (
+    default-background: $transparent,
+    hover-background: $brand-color-secondary-light,
+    focus-background: $brand-color-secondary-light,
+    disabled-background: $transparent,
+    default-text-color: $brand-color-secondary-pure,
+    disabled-text-color: $neutral-color-low-light,
+    border: $brand-color-secondary-pure
+  ),
+  danger: (
+    default-background: $feedback-color-danger-pure,
+    hover-background: $feedback-color-danger-medium,
+    focus-background: $feedback-color-danger-medium,
+    disabled-background: $neutral-color-high-medium,
+    default-text-color: $neutral-color-high-pure,
+    disabled-text-color: $neutral-color-low-light
+  ),
+  danger-secondary: (
+    default-background: $transparent,
+    hover-background: $brand-color-primary-light,
+    focus-background: $brand-color-primary-light,
+    disabled-background: $transparent,
+    default-text-color: $feedback-color-danger-pure,
+    disabled-text-color: $neutral-color-low-light,
+    border: $feedback-color-danger-pure,
+  ),
+  success: (
+    default-background: $feedback-color-success-pure,
+    hover-background: $feedback-color-success-medium,
+    focus-background: $feedback-color-success-medium,
+    disabled-background: $neutral-color-high-medium,
+    default-text-color: $neutral-color-high-pure,
+    disabled-text-color: $neutral-color-low-light
+  ),
+  success-secondary: (
+    default-background: $transparent,
+    hover-background: $feedback-color-success-light,
+    focus-background: $feedback-color-success-light,
+    disabled-background: $transparent,
+    default-text-color: $feedback-color-success-pure,
+    disabled-text-color: $neutral-color-low-light,
+    border: $feedback-color-success-pure
+  ),
+);
+
+$sizes: (
+  small: (
+    font-size: $font-size-xxs,
+    padding: $spacing-nano $spacing-xxs
+  ),
+  medium: (
+    font-size: $font-size-xxs,
+    padding: $spacing-xxxs $spacing-xs
+  ),
+  large: (
+    font-size: $font-size-xs,
+    padding: $spacing-xxs $spacing-md
+  )
+);
+
+// Base
+
+.#{$prefix}-button {
+  align-items: center;
+  border: none;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  display: flex;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-comfortable;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: top;
+  height: fit-content;
+}
+
+// Variants
+@each $variant, $config in $variant-colors {
+  .#{$prefix}-button--#{$variant} {
+    $default-background: map-get($config, "default-background");
+    $default-text-color: map-get($config, "default-text-color");
+    $hover-background-color: map-get($config, "hover-background");
+    $focus-background-color: map-get($config, "focus-background");
+    $disabled-background-color: map-get($config, "disabled-background");
+    $disabled-text-color: map-get($config, "disabled-text-color");
+    $border: map-get($config, "border");
+
+    background: $default-background;
+    color: $default-text-color;
+
+    @if $border {
+      border: 2px solid $border;
+    }
+
+    &:hover {
+      background: $hover-background-color;
+    }
+
+    &:focus {
+      background: $focus-background-color;
+      outline: 2px solid #3575d4;
+      outline-offset: 1px;
+    }
+
+    &.#{$prefix}-button--disabled {
+      @extend .#{$prefix}-button--is-disabled;
+
+      background: $disabled-background-color;
+      color: $disabled-text-color;
+
+      @if $border {
+        border: 2px solid $neutral-color-high-medium;
+      }
+    }
+  }
+}
+
+// Link
+
+.#{$prefix}-button--link {
+  background: $transparent;
+  color: $brand-color-secondary-pure;
+  text-decoration: underline;
+
+  &:hover {
+    color: $brand-color-secondary-medium;
+  }
+
+  &:focus {
+    outline: 2px solid #3575d4;
+    outline-offset: 1px;
+  }
+
+  &.#{$prefix}-button--disabled {
+    @extend .#{$prefix}-button--is-disabled;
+
+    color: $neutral-color-low-light;
+  }
+}
+
+// Sizes
+
+@each $size, $config in $sizes {
+  .#{$prefix}-button--#{$size} {
+    $button-font-size: map-get($config, "font-size");
+    $button-padding: map-get($config, "padding");
+
+    font-size: $button-font-size;
+    padding: $button-padding;
+  }
+}
+
+// Behavior
+
+.#{$prefix}-button--block {
+  width: 100%;
+}
+
+// States
+
+.#{$prefix}-button--is-disabled {
+  pointer-events: none;
+
+  & > * {
+    color: $neutral-color-low-light;
+  }
+}

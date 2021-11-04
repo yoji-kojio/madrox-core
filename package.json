@@ -1,0 +1,25 @@
+{
+  "name": "@herospark/madrox-core",
+  "version": "1.0.0",
+  "description": "Madrox Design System",
+  "main": "madrox.scss",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && npm run build-sass && npm run build-autoprefix && npm run build-cleancss",
+    "build-sass": "node-sass --output-style expanded src/madrox.scss ./dist/madrox.css",
+    "build-autoprefix": "postcss --use autoprefixer --map --output ./dist/madrox.css ./dist/madrox.css",
+    "build-cleancss": "cleancss -o ./dist/madrox.min.css ./dist/madrox.css"
+  },
+  "author": "HeroSpark",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "clean-css-cli": "^5.4.2",
+    "node-sass": "^6.0.1",
+    "postcss-cli": "^9.0.1",
+    "rimraf": "^3.0.2"
+  }
+}
