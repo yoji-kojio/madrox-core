@@ -1,5 +1,5 @@
 {
-  "name": "@herospark/madrox-core",
+  "name": "madrox-core",
   "version": "1.0.0",
   "description": "Madrox Design System",
   "main": "madrox.scss",
